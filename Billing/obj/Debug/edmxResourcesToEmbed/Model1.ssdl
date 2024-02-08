@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BillingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Imed">
+    <Key>
+      <PropertyRef Name="Receipt_No" />
+    </Key>
+    <Property Name="Receive_Date" Type="date" />
+    <Property Name="HN" Type="varchar" MaxLength="250" />
+    <Property Name="Receipt_No" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="250" />
+    <Property Name="Net" Type="float" />
+    <Property Name="payer_name" Type="varchar" MaxLength="250" />
+    <Property Name="regis_name" Type="varchar" MaxLength="250" />
+    <Property Name="welfare_name" Type="varchar" MaxLength="250" />
+    <Property Name="AR" Type="varchar" MaxLength="250" />
+    <Property Name="Pending_delivery" Type="bit" />
+    <Property Name="Date_Scan" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SAP">
+    <Key>
+      <PropertyRef Name="Ref_Document" />
+    </Key>
+    <Property Name="Billing_Date" Type="date" />
+    <Property Name="Bill_To_Party" Type="nvarchar" MaxLength="250" />
+    <Property Name="Bill_To_Party_Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Ref_Document" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="HN" Type="nvarchar" MaxLength="250" />
+    <Property Name="Patient_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Net_revenue" Type="float" />
+    <Property Name="Cashier_name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Collector_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Cost_center" Type="nvarchar" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Billing.dbo.chk_bill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="chk_bill">
+    <Key>
+      <PropertyRef Name="Receipt_No" />
+    </Key>
+    <Property Name="Receive_Date" Type="date" />
+    <Property Name="HN" Type="varchar" MaxLength="250" />
+    <Property Name="Receipt_No" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="250" />
+    <Property Name="Net" Type="float" />
+    <Property Name="payer_name" Type="varchar" MaxLength="250" />
+    <Property Name="regis_name" Type="varchar" MaxLength="250" />
+    <Property Name="welfare_name" Type="varchar" MaxLength="250" />
+    <Property Name="AR" Type="varchar" MaxLength="250" />
+    <Property Name="Pending_delivery" Type="varchar" MaxLength="250" />
+    <Property Name="SAP_HN" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date_Scan" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="BillingModelStoreContainer">
+    <EntitySet Name="Imed" EntityType="Self.Imed" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SAP" EntityType="Self.SAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chk_bill" EntityType="Self.chk_bill" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[chk_bill].[Receive_Date] AS [Receive_Date], 
+[chk_bill].[HN] AS [HN], 
+[chk_bill].[Receipt_No] AS [Receipt_No], 
+[chk_bill].[Name] AS [Name], 
+[chk_bill].[Net] AS [Net], 
+[chk_bill].[payer_name] AS [payer_name], 
+[chk_bill].[regis_name] AS [regis_name], 
+[chk_bill].[welfare_name] AS [welfare_name], 
+[chk_bill].[AR] AS [AR], 
+[chk_bill].[Pending_delivery] AS [Pending_delivery], 
+[chk_bill].[SAP_HN] AS [SAP_HN], 
+[chk_bill].[Date_Scan] AS [Date_Scan]
+FROM [dbo].[chk_bill] AS [chk_bill]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

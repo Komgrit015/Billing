@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BillingModelStoreContainer" CdmEntityContainer="BillingEntities">
+    <EntitySetMapping Name="Imeds">
+      <EntityTypeMapping TypeName="BillingModel.Imed">
+        <MappingFragment StoreEntitySet="Imed">
+          <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+          <ScalarProperty Name="HN" ColumnName="HN" />
+          <ScalarProperty Name="Receipt_No" ColumnName="Receipt_No" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Net" ColumnName="Net" />
+          <ScalarProperty Name="payer_name" ColumnName="payer_name" />
+          <ScalarProperty Name="regis_name" ColumnName="regis_name" />
+          <ScalarProperty Name="welfare_name" ColumnName="welfare_name" />
+          <ScalarProperty Name="AR" ColumnName="AR" />
+          <ScalarProperty Name="Pending_delivery" ColumnName="Pending_delivery" />
+          <ScalarProperty Name="Date_Scan" ColumnName="Date_Scan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SAPs">
+      <EntityTypeMapping TypeName="BillingModel.SAP">
+        <MappingFragment StoreEntitySet="SAP">
+          <ScalarProperty Name="Billing_Date" ColumnName="Billing_Date" />
+          <ScalarProperty Name="Bill_To_Party" ColumnName="Bill_To_Party" />
+          <ScalarProperty Name="Bill_To_Party_Description" ColumnName="Bill_To_Party_Description" />
+          <ScalarProperty Name="Ref_Document" ColumnName="Ref_Document" />
+          <ScalarProperty Name="HN" ColumnName="HN" />
+          <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+          <ScalarProperty Name="Net_revenue" ColumnName="Net_revenue" />
+          <ScalarProperty Name="Cashier_name" ColumnName="Cashier_name" />
+          <ScalarProperty Name="Collector_Name" ColumnName="Collector_Name" />
+          <ScalarProperty Name="Cost_center" ColumnName="Cost_center" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chk_bill">
+      <EntityTypeMapping TypeName="BillingModel.chk_bill">
+        <MappingFragment StoreEntitySet="chk_bill">
+          <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+          <ScalarProperty Name="HN" ColumnName="HN" />
+          <ScalarProperty Name="Receipt_No" ColumnName="Receipt_No" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Net" ColumnName="Net" />
+          <ScalarProperty Name="payer_name" ColumnName="payer_name" />
+          <ScalarProperty Name="regis_name" ColumnName="regis_name" />
+          <ScalarProperty Name="welfare_name" ColumnName="welfare_name" />
+          <ScalarProperty Name="AR" ColumnName="AR" />
+          <ScalarProperty Name="Pending_delivery" ColumnName="Pending_delivery" />
+          <ScalarProperty Name="SAP_HN" ColumnName="SAP_HN" />
+          <ScalarProperty Name="Date_Scan" ColumnName="Date_Scan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

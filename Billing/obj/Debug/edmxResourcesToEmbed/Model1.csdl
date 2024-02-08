@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BillingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Imed">
+    <Key>
+      <PropertyRef Name="Receipt_No" />
+    </Key>
+    <Property Name="Receive_Date" Type="DateTime" Precision="0" />
+    <Property Name="HN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Receipt_No" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Net" Type="Double" />
+    <Property Name="payer_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="regis_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="welfare_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AR" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Pending_delivery" Type="Boolean" />
+    <Property Name="Date_Scan" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SAP">
+    <Key>
+      <PropertyRef Name="Ref_Document" />
+    </Key>
+    <Property Name="Billing_Date" Type="DateTime" Precision="0" />
+    <Property Name="Bill_To_Party" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Bill_To_Party_Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Ref_Document" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Patient_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Net_revenue" Type="Double" />
+    <Property Name="Cashier_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Collector_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Cost_center" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="chk_bill">
+    <Key>
+      <PropertyRef Name="Receipt_No" />
+    </Key>
+    <Property Name="Receive_Date" Type="DateTime" Precision="0" />
+    <Property Name="HN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Receipt_No" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Net" Type="Double" />
+    <Property Name="payer_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="regis_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="welfare_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AR" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Pending_delivery" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SAP_HN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Date_Scan" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="BillingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Imeds" EntityType="Self.Imed" />
+    <EntitySet Name="SAPs" EntityType="Self.SAP" />
+    <EntitySet Name="chk_bill" EntityType="Self.chk_bill" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BillingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Imed">
+          <Key>
+            <PropertyRef Name="Receipt_No" />
+          </Key>
+          <Property Name="Receive_Date" Type="date" />
+          <Property Name="HN" Type="varchar" MaxLength="250" />
+          <Property Name="Receipt_No" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Net" Type="float" />
+          <Property Name="payer_name" Type="varchar" MaxLength="250" />
+          <Property Name="regis_name" Type="varchar" MaxLength="250" />
+          <Property Name="welfare_name" Type="varchar" MaxLength="250" />
+          <Property Name="AR" Type="varchar" MaxLength="250" />
+          <Property Name="Pending_delivery" Type="bit" />
+          <Property Name="Date_Scan" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SAP">
+          <Key>
+            <PropertyRef Name="Ref_Document" />
+          </Key>
+          <Property Name="Billing_Date" Type="date" />
+          <Property Name="Bill_To_Party" Type="nvarchar" MaxLength="250" />
+          <Property Name="Bill_To_Party_Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ref_Document" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="HN" Type="nvarchar" MaxLength="250" />
+          <Property Name="Patient_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Net_revenue" Type="float" />
+          <Property Name="Cashier_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Collector_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Cost_center" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Billing.dbo.chk_bill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="chk_bill">
+          <Key>
+            <PropertyRef Name="Receipt_No" />
+          </Key>
+          <Property Name="Receive_Date" Type="date" />
+          <Property Name="HN" Type="varchar" MaxLength="250" />
+          <Property Name="Receipt_No" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Net" Type="float" />
+          <Property Name="payer_name" Type="varchar" MaxLength="250" />
+          <Property Name="regis_name" Type="varchar" MaxLength="250" />
+          <Property Name="welfare_name" Type="varchar" MaxLength="250" />
+          <Property Name="AR" Type="varchar" MaxLength="250" />
+          <Property Name="Pending_delivery" Type="varchar" MaxLength="250" />
+          <Property Name="SAP_HN" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date_Scan" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="BillingModelStoreContainer">
+          <EntitySet Name="Imed" EntityType="Self.Imed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAP" EntityType="Self.SAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chk_bill" EntityType="Self.chk_bill" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[chk_bill].[Receive_Date] AS [Receive_Date], 
+[chk_bill].[HN] AS [HN], 
+[chk_bill].[Receipt_No] AS [Receipt_No], 
+[chk_bill].[Name] AS [Name], 
+[chk_bill].[Net] AS [Net], 
+[chk_bill].[payer_name] AS [payer_name], 
+[chk_bill].[regis_name] AS [regis_name], 
+[chk_bill].[welfare_name] AS [welfare_name], 
+[chk_bill].[AR] AS [AR], 
+[chk_bill].[Pending_delivery] AS [Pending_delivery], 
+[chk_bill].[SAP_HN] AS [SAP_HN], 
+[chk_bill].[Date_Scan] AS [Date_Scan]
+FROM [dbo].[chk_bill] AS [chk_bill]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BillingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Imed">
+          <Key>
+            <PropertyRef Name="Receipt_No" />
+          </Key>
+          <Property Name="Receive_Date" Type="DateTime" Precision="0" />
+          <Property Name="HN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Receipt_No" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Net" Type="Double" />
+          <Property Name="payer_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="regis_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="welfare_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AR" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Pending_delivery" Type="Boolean" />
+          <Property Name="Date_Scan" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SAP">
+          <Key>
+            <PropertyRef Name="Ref_Document" />
+          </Key>
+          <Property Name="Billing_Date" Type="DateTime" Precision="0" />
+          <Property Name="Bill_To_Party" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Bill_To_Party_Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ref_Document" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Patient_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Net_revenue" Type="Double" />
+          <Property Name="Cashier_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Collector_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Cost_center" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="chk_bill">
+          <Key>
+            <PropertyRef Name="Receipt_No" />
+          </Key>
+          <Property Name="Receive_Date" Type="DateTime" Precision="0" />
+          <Property Name="HN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Receipt_No" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Net" Type="Double" />
+          <Property Name="payer_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="regis_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="welfare_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AR" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Pending_delivery" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SAP_HN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Scan" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="BillingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Imeds" EntityType="Self.Imed" />
+          <EntitySet Name="SAPs" EntityType="Self.SAP" />
+          <EntitySet Name="chk_bill" EntityType="Self.chk_bill" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BillingModelStoreContainer" CdmEntityContainer="BillingEntities">
+          <EntitySetMapping Name="Imeds">
+            <EntityTypeMapping TypeName="BillingModel.Imed">
+              <MappingFragment StoreEntitySet="Imed">
+                <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+                <ScalarProperty Name="HN" ColumnName="HN" />
+                <ScalarProperty Name="Receipt_No" ColumnName="Receipt_No" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="payer_name" ColumnName="payer_name" />
+                <ScalarProperty Name="regis_name" ColumnName="regis_name" />
+                <ScalarProperty Name="welfare_name" ColumnName="welfare_name" />
+                <ScalarProperty Name="AR" ColumnName="AR" />
+                <ScalarProperty Name="Pending_delivery" ColumnName="Pending_delivery" />
+                <ScalarProperty Name="Date_Scan" ColumnName="Date_Scan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAPs">
+            <EntityTypeMapping TypeName="BillingModel.SAP">
+              <MappingFragment StoreEntitySet="SAP">
+                <ScalarProperty Name="Billing_Date" ColumnName="Billing_Date" />
+                <ScalarProperty Name="Bill_To_Party" ColumnName="Bill_To_Party" />
+                <ScalarProperty Name="Bill_To_Party_Description" ColumnName="Bill_To_Party_Description" />
+                <ScalarProperty Name="Ref_Document" ColumnName="Ref_Document" />
+                <ScalarProperty Name="HN" ColumnName="HN" />
+                <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+                <ScalarProperty Name="Net_revenue" ColumnName="Net_revenue" />
+                <ScalarProperty Name="Cashier_name" ColumnName="Cashier_name" />
+                <ScalarProperty Name="Collector_Name" ColumnName="Collector_Name" />
+                <ScalarProperty Name="Cost_center" ColumnName="Cost_center" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chk_bill">
+            <EntityTypeMapping TypeName="BillingModel.chk_bill">
+              <MappingFragment StoreEntitySet="chk_bill">
+                <ScalarProperty Name="Receive_Date" ColumnName="Receive_Date" />
+                <ScalarProperty Name="HN" ColumnName="HN" />
+                <ScalarProperty Name="Receipt_No" ColumnName="Receipt_No" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="payer_name" ColumnName="payer_name" />
+                <ScalarProperty Name="regis_name" ColumnName="regis_name" />
+                <ScalarProperty Name="welfare_name" ColumnName="welfare_name" />
+                <ScalarProperty Name="AR" ColumnName="AR" />
+                <ScalarProperty Name="Pending_delivery" ColumnName="Pending_delivery" />
+                <ScalarProperty Name="SAP_HN" ColumnName="SAP_HN" />
+                <ScalarProperty Name="Date_Scan" ColumnName="Date_Scan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
